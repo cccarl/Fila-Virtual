@@ -16,7 +16,14 @@ public class User {
     private String phoneNum;
     private String role;
 
-    public User(){
+    public User(String rut, String names, String surnames, String email, String password, String phoneNum, String role) {
+        this.rut = rut;
+        this.names = names;
+        this.surnames = surnames;
+        this.email = email;
+        this.password = password;
+        this.phoneNum = phoneNum;
+        this.role = role;
     }
 
     public String getId() {
