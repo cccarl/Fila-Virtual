@@ -1,20 +1,22 @@
 <template>
   <div class="register">
-    <FormRegister/>
+    <Header msgBoton1="Ingresar" msgBoton2="Registrarse"/>
+    <FormRegister />
   </div>
 </template>
 
 <script>
-import FormRegister from '@/components/FormRegister.vue'
+import FormRegister from "@/components/FormRegister.vue";
+import Header from "@/components/Header.vue";
 
 export default {
-  name: 'Register',
+  name: "Register",
   components: {
-    FormRegister
-  }
-}
+    FormRegister,
+    Header,
+  },
+};
 </script>
 
 <style>
-
 </style>
