@@ -1,5 +1,6 @@
 package com.fingeso.fila_virtual.models;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.File;
@@ -7,6 +8,8 @@ import java.io.File;
 @Document
 public class Local {
 
+    @Id
+    private String Id;
     private String name;
     private String address;
     private String telephone;
