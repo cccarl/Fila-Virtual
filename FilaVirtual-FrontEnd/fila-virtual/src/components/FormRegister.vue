@@ -51,8 +51,8 @@ input {
 }
 .btn {
   position: static;
-  width: 200px;
-  padding: 20px;
+  width: 150px;
+  padding: 10px;
   margin: 5px;
   border-radius: 6px;
   border: 0;
