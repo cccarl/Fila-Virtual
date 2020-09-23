@@ -28,7 +28,7 @@
                                 <button class="botonJ">Descargar QR</button>
                             </div>
                             <div>
-                                <button class="botonJ-popup">Ingresar a la fila</button>
+                                <button v-on:click="showPopUp" class="botonJ-popup">Ingresar a la fila</button>
                             </div>
                             <div>
                                 <router-link to="/fila">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overlay">
+            <div id="prueba" class="overlay">
                 <div class="popup">
                     <form>
                         <h1 class="titleRegister">Ingresa a la fila</h1>
@@ -61,6 +61,12 @@
         components: {
             Header,
         },
+        methods: {
+            showPopUp() {
+                var btn = document.getElementById("prueba");
+                btn.style.visibility = 'visible';
+            }
+        }
     };
 </script>
 

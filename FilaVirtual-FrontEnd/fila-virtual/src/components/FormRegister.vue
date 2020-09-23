@@ -11,7 +11,7 @@
         <input v-model="new_user.password" placeholder="Confirmación de contraseña" type="password" required/>
 
         <router-link to="/successregister">
-          <button v-on:click="create_user" class="btn btnRigth" href="/">Aceptar</button>
+          <button v-on:click="create_user" class="btn btnRigth">Aceptar</button>
         </router-link>
 
         <router-link to="/">
