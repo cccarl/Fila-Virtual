@@ -38,8 +38,9 @@
         <td>11111111111</td>
       </tr>
     </table>
-
-    <button class="btnVerLocal btnViewQueue">Ver local</button>
+    <router-link to="/tienda">
+      <button class="btnVerLocal btnViewQueue">Ver local</button>
+    </router-link>
     <button class="btnCerrar btnViewQueue">Cerrar fila</button>
   </div>
 </template>
