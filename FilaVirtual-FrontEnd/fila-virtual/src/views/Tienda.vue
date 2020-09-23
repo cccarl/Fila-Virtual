@@ -28,7 +28,7 @@
                                 <button class="botonJ">Descargar QR</button>
                             </div>
                             <div>
-                                <button class="botonJ">Ingresar a la fila</button>
+                                <button class="botonJ-popup">Ingresar a la fila</button>
                             </div>
                             <div>
                                 <router-link to="/fila">
@@ -37,6 +37,18 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="popup">
+                    <form>
+                        <h1 class="titleRegister">Ingresa a la fila</h1>
+                        <input placeholder="Nombre" type="name" />
+                        <input placeholder="Rut" type="rut" />
+                        <input placeholder="Telefono" type="phone" />
+                            <button class="btn btnRigth">Aceptar</button>
+                            <button class="btn btnRigth">Cancelar</button>
+                    </form>
                 </div>
             </div>
     </div>
@@ -92,7 +104,81 @@
         color: #2c4766;
         text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
     }
-    .boton:active{
-        
+    .botonJ:active{
+        background: #93cacc;
+    }
+    
+    .botonJ-popup {
+        width: 100px;
+        padding: 15px;
+        margin: 5px;
+        float: right;
+        border-radius: 6px;
+        border: 0;
+        border: 2px solid #6da1b6;
+        background: #bcd4d5;
+        font-size: 15px;
+        text-align: center;
+        color: #2c4766;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    }
+    .botonJ-popup:active{
+        background: #93cacc;
+    }
+
+    /*
+        POPUP FORMULARIO EMERGENTE
+    */
+    input {
+        width: 90%;
+        background: #ffffff;
+        border: solid #6da1b6;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+    }
+    .btn {
+        width: 150px;
+        padding: 25px;
+        margin: 5px;
+        float: right;
+        border-radius: 6px;
+        border: 0;
+        border: 2px solid #6da1b6;
+        background: #bcd4d5;
+        font-size: 20px;
+        text-align: center;
+        color: #2c4766;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    }
+    .btn:active {
+        background: #93cacc;
+    }
+
+    .btnRigth {
+        float: right;
+    }
+    .overlay{
+        background: rgba(0, 0, 0, 0.3);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+    }
+    .overlayActive{
+        visibility: visible;
+    }
+    .popup{
+        background: #f1faee;
+        border-radius: 5px;
+        width: 70%;
+        padding: 15px;
+        margin: 20px;
     }
 </style>

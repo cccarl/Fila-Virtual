@@ -7,7 +7,7 @@
       <button class="btnHedaer">{{msgBoton2}}</button>
     </router-link>
 
-    <router-link to="/">
+    <router-link to="/login">
       <button class="btnHedaer">{{msgBoton1}}</button>
     </router-link>
   </div>
