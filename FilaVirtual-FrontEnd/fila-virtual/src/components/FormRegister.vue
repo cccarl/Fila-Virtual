@@ -3,15 +3,15 @@
     <div>
       <form>
         <h1 class="titleRegister">Crear una cuenta</h1>
-        <input placeholder="Nombre" type="text" />
-        <input placeholder="Apellido" type="text" />
-        <input placeholder="Email" type="email" />
-        <input placeholder="Número de celular" type="text" />
-        <input placeholder="Contraseña" type="password" />
-        <input placeholder="Confirmación de contraseña" type="password" />
+        <input v-model="new_user.names" placeholder="Nombre" type="text" required/>
+        <input v-model="new_user.surnames" placeholder="Apellido" type="text" required/>
+        <input v-model="new_user.email" placeholder="Email" type="email" required/>
+        <input v-model="new_user.phoneNum" placeholder="Número de celular" type="text" required/>
+        <input placeholder="Contraseña" type="password" required/>
+        <input v-model="new_user.password" placeholder="Confirmación de contraseña" type="password" required/>
 
         <router-link to="/successregister">
-          <button class="btn btnRigth">Aceptar</button>
+          <button v-on:click="create_user" class="btn btnRigth" href="/">Aceptar</button>
         </router-link>
 
         <router-link to="/">
@@ -23,9 +23,45 @@
 </template>
 
 <script>
+import  { mapState, mapMutations }  from "vuex";
+
 export default {
   name: "FormRegister",
   props: {},
+  data: () => ({
+    new_user: {
+      names: null,
+      surnames: null,
+      email: null,
+      password: null,
+      phoneNum: null,
+      role: "user"
+    }
+  }),
+
+  computed: {
+    ...mapState(["users"]),
+  },
+
+  methods: {
+    // Se importan lo metodos del store
+    ...mapMutations(["createUser"]),
+
+    // Metodo para comprobar los datos ingresados.
+    complete(new_user) {
+      if (new_user.names == null || new_user.surnames == null || new_user.email == null || new_user.password == null || new_user.phoneNum == null){
+        return false
+      }
+      return true
+    },
+
+    // Envia el usuario para ser ingresado al back
+    create_user() {
+      if (this.complete(this.new_user)) {
+        this.createUser(this.new_user)
+      }
+    },
+  }
 };
 </script>
 
@@ -51,8 +87,8 @@ input {
 }
 .btn {
   position: static;
-  width: 200px;
-  padding: 20px;
+  width: 150px;
+  padding: 10px;
   margin: 5px;
   border-radius: 6px;
   border: 0;

@@ -8,34 +8,15 @@
 
     <table style="width:100%">
       <tr>
-        <th>#</th>
-        <th>Nombre</th>
-        <th>Celular</th>
+        <th style="background-color: #ccc;">#</th>
+        <th style="background-color: #ccc;">Nombre</th>
+        <th style="background-color: #ccc;">Celular</th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Gabriel</td>
-        <td>11111111111</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Carlos</td>
-        <td>11111111111</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Manuel</td>
-        <td>11111111111</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>William</td>
-        <td>11111111111</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Jose</td>
-        <td>11111111111</td>
+
+      <tr v-for="user in users" :key="user.id">
+        <td>{{ user.names }}</td>
+        <td>{{ user.names }}</td>
+        <td>{{ user.phoneNum }}</td>
       </tr>
     </table>
     <router-link to="/tienda">
@@ -46,9 +27,25 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "FilaComponent",
   props: {},
+  mounted() {
+    this.get_users();
+  },
+  computed: {
+    ...mapState(["users"]),
+  },
+
+  methods: {
+    ...mapMutations(["getAllUsers"]),
+
+    get_users() {
+      this.getAllUsers();
+    },
+  },
 };
 </script>
 
