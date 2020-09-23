@@ -1,11 +1,14 @@
 package com.fingeso.fila_virtual.models;
 
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 @Document
 public class Queue{
+
+    @Id
+    private String Id;
     private ArrayList<Customer> customerList;
     private String primary;
     private String enabled;
