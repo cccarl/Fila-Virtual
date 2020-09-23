@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class = "tienda">
-            <Header msgBoton1="Ingresar" msgBoton2="Registrarse"/>
+            <Header msgBoton1="Perfil" msgBoton2="Salir"/>
         </div>
         
             <div class= "w3-row" id= "cuadroGrande">
@@ -43,9 +43,9 @@
                 <div class="popup">
                     <form>
                         <h1 class="titleRegister">Ingresa a la fila</h1>
-                        <input placeholder="Nombre" type="name" />
-                        <input placeholder="Apellido" type="lastName" />
-                        <input placeholder="Telefono" type="phone" />
+                        <input v-model="user.names" placeholder="Nombre" type="name" />
+                        <input v-model="user.surnames" placeholder="Apellido" type="lastName" />
+                        <input v-model="user.phoneNum" placeholder="Telefono" type="phone" />
                             <button v-on:click="ingresarVue" class="btn btnRigth">Aceptar</button>
                             <button v-on:click="closePopUp" class="btn btnRigth" id="botonCerrarPopup">Cancelar</button>
                     </form>
@@ -61,6 +61,13 @@
         components: {
             Header,
         },
+        data: () => ({
+            user: {
+                names: null,
+                surnames: null,
+                phoneNum: null
+            }
+        }),
         methods: {
             showPopUp() {
                 var btn = document.getElementById("prueba");
@@ -70,9 +77,14 @@
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'hidden';
             },
+            checkLogin() {
+                console.log("Aqui deberia comprobarse")
+                console.log(this.user)
+            },
             ingresarVue(){
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'hidden';
+                this.checkLogin()
                 alert('Se ha ingresado a la fila correctamente, le llegara la confirmación a su celular');
             }
         }

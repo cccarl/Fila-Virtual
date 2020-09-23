@@ -6,11 +6,11 @@
         <div id="cuadroGrande">
             <form>
                 <h1 class="titleRegister">Ingresa a tu cuenta</h1>
-                <input placeholder="Email" type="email" />
-                <input placeholder="Contraseña" type="password" />
+                <input v-model="user.email" placeholder="Email" type="email" />
+                <input v-model="user.password" placeholder="Contraseña" type="password" />
 
                 <router-link to="/tienda">
-                    <button class="btn btnRigth">Aceptar</button>
+                    <button v-on:click="checkLogin" class="btn btnRigth">Aceptar</button>
                 </router-link>
 
                 <router-link to="/">
@@ -29,6 +29,18 @@
         components: {
             Header,
         },
+        data: () => ({
+            user: {
+                email: null,
+                password: null
+            }
+        }),
+        methods: {
+            checkLogin() {
+                console.log("Aqui deberia comprobarse")
+                console.log(this.user)
+            }
+        }
     };
 </script>
 
@@ -46,11 +58,12 @@
     input {
         width: 90%;
         background: #ffffff;
-        border: 0;
+        border: solid #6da1b6;
         padding: 20px;
         border-radius: 6px;
         margin-bottom: 10px;
         border: 1px solid #eee;
+        font-size: 20px;
     }
     .btn {
         width: 200px;

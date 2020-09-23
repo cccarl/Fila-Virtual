@@ -81,11 +81,12 @@ form {
 input {
   width: 90%;
   background: #ffffff;
-  border: 0;
+  border: solid #6da1b6;
   padding: 20px;
   border-radius: 6px;
   margin-bottom: 10px;
   border: 1px solid #eee;
+  font-size: 20px;
 }
 .btn {
   position: static;
