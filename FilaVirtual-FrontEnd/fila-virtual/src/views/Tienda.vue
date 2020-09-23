@@ -44,10 +44,10 @@
                     <form>
                         <h1 class="titleRegister">Ingresa a la fila</h1>
                         <input placeholder="Nombre" type="name" />
-                        <input placeholder="Rut" type="rut" />
+                        <input placeholder="Apellido" type="lastName" />
                         <input placeholder="Telefono" type="phone" />
-                            <button class="btn btnRigth">Aceptar</button>
-                            <button class="btn btnRigth">Cancelar</button>
+                            <button v-on:click="ingresarVue" class="btn btnRigth">Aceptar</button>
+                            <button v-on:click="closePopUp" class="btn btnRigth" id="botonCerrarPopup">Cancelar</button>
                     </form>
                 </div>
             </div>
@@ -65,9 +65,21 @@
             showPopUp() {
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'visible';
+            },
+            closePopUp(){
+                var btn = document.getElementById("prueba");
+                btn.style.visibility = 'hidden';
+            },
+            ingresarVue(){
+                var btn = document.getElementById("prueba");
+                btn.style.visibility = 'hidden';
+                alert('Se ha ingresado a la fila correctamente, le llegara la confirmación a su celular');
             }
         }
     };
+
+    
+    
 </script>
 
 <style>
@@ -143,6 +155,7 @@
         border-radius: 6px;
         margin-bottom: 10px;
         border: 1px solid #eee;
+        font-size: 20px;
     }
     .btn {
         width: 150px;
@@ -176,9 +189,6 @@
         align-items: center;
         justify-content: center;
         visibility: hidden;
-    }
-    .overlayActive{
-        visibility: visible;
     }
     .popup{
         background: #f1faee;
