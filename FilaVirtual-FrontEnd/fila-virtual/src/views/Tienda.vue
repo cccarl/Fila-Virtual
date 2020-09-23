@@ -23,14 +23,14 @@
                             Cantidad de personas: 0<br>
                             Tiempo estimado: 24:00:00<br>
                         </p>
-                        <div>
-                            <div>
+                        <div class="container">
+                            <div class="grid-item">
                                 <button class="botonJ">Descargar QR</button>
                             </div>
-                            <div>
+                            <div class="grid-item">
                                 <button v-on:click="showPopUp" class="botonJ-popup">Ingresar a la fila</button>
                             </div>
-                            <div>
+                            <div class="grid-item">
                                 <router-link to="/fila">
                                     <button class="botonJ">Ver Fila</button>
                                 </router-link>
@@ -142,6 +142,15 @@
     }
     .botonJ-popup:active{
         background: #93cacc;
+    }
+
+    .container{
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .grid-item{
+        float: right;
     }
 
     /*
