@@ -1,7 +1,8 @@
 <template>
   <div class="header">
-    <img class="logo" src="../assets/logoFilaVirtual.png" />
-
+    <a href= "/">
+      <img class="logo"  src="../assets/logoFilaVirtual.png" />
+    </a>
     <router-link to="/register">
       <button class="btnHedaer">{{msgBoton2}}</button>
     </router-link>
