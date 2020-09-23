@@ -5,11 +5,11 @@
         </div>
         <div id="cuadroGrande">
             <form>
-                <h1 class="titleRegister">Crear una cuenta</h1>
+                <h1 class="titleRegister">Ingresa a tu cuenta</h1>
                 <input placeholder="Email" type="email" />
                 <input placeholder="Contraseña" type="password" />
 
-                <router-link to="/">
+                <router-link to="/tienda">
                     <button class="btn btnRigth">Aceptar</button>
                 </router-link>
 

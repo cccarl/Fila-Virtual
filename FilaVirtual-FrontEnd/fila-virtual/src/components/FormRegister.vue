@@ -5,6 +5,7 @@
         <h1 class="titleRegister">Crear una cuenta</h1>
         <input v-model="new_user.names" placeholder="Nombre" type="text" required/>
         <input v-model="new_user.surnames" placeholder="Apellido" type="text" required/>
+        <input v-model="new_user.rut" placeholder="Rut" type="text" required/>
         <input v-model="new_user.email" placeholder="Email" type="email" required/>
         <input v-model="new_user.phoneNum" placeholder="Número de celular" type="text" required/>
         <input placeholder="Contraseña" type="password" required/>
@@ -30,6 +31,7 @@ export default {
   props: {},
   data: () => ({
     new_user: {
+      rut: null,
       names: null,
       surnames: null,
       email: null,
