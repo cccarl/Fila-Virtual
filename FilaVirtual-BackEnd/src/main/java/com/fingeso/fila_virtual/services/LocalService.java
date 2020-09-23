@@ -1,35 +1,37 @@
 package com.fingeso.fila_virtual.services;
 
-import com.fingeso.fila_virtual.models.User;
-import com.fingeso.fila_virtual.repositories.UserRepo;
+import com.fingeso.fila_virtual.models.Local;
+import com.fingeso.fila_virtual.repositories.LocalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 
-
-@restController
+@RestController
 @CrossOrigin(origins = "*") //agregar servidor más adelante
 @RequestMapping(value = "/local")
 
 public class LocalService{
 
-    @autowired
-    @RequestMapping(value = '/getall', method = RequestMetod.GET)
+    @Autowired
+    private LocalRepo localRepo;
+
+    @RequestMapping(value = "/getall", method = RequestMethod.GET)
     @ResponseBody
     public List<Local> getAll(){
         System.out.println("holaaa");
-        return this.LocalRepo.findAll();
+        return this.localRepo.findAll();
     }
-
-    @requestMapping(value = '/getbyid/{id}', method = RequestMethod.GET)
+/*
+    @RequestMapping(value = "/getbyid/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Local getById(@PathVarable(value = "id") String id){
+    public Local getById(@PathVariable(value = "id") String id){
         System.out.println(id);
         return this.localRepo.findLocalById(id);
     }
-
+*/
 
 }

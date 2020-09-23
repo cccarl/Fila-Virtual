@@ -1,15 +1,12 @@
 package com.fingeso.fila_virtual.models;
 
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 @Document
 public class Queue{
     private ArrayList<Customer> customerList;
-    @Id
-    private String Id;
     private String primary;
     private String enabled;
     private String estimatedTime;
@@ -27,14 +24,6 @@ public class Queue{
 
     public void setPrimary(String primary) {
         this.primary = primary;
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
     }
 
     public ArrayList<Customer> getCustomerList() {
