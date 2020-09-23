@@ -4,5 +4,5 @@ import com.fingeso.fila_virtual.models.Queue;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface QueueRepo extends MongoRepository<Queue, String> {
-    Queue findQueueById(String id);
+    Queue findQueueByPrimary(String primary);
 }
