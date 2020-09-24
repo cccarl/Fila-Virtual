@@ -40,7 +40,18 @@ export default new Vuex.Store({
 			}
 		},
 		avanzarFila() {
-			console.log("Se avanza la fila")
+			try {
+				axios.get('http://localhost:8081/queue/removeUserInQueue/')
+					.then(response => {
+						console.log(response.data);
+					})
+					.catch(e => {
+						this.errors.push(e)
+					})
+			} catch (err) {
+
+				console.log("Se obtuvo el siguiente error al quitar un usuario a la fila: " + err)
+			}
 		},
 		ingresarFila() {
 			try {
