@@ -32,7 +32,6 @@ public class QueueService {
             List<User> users = this.userRepo.findAll(); //se obtiene todos los usuarios
             User nuevo = users.get(users.size()-1);
             Queue queue = this.queueRepo.findQueueByPrimary("1");
-            this.queueRepo.delete(queue);
             ArrayList<User> aux = queue.getUserList();
             aux.add(nuevo);
             this.queueRepo.save(queue);

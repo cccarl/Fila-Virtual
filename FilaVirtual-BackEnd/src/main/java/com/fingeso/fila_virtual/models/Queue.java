@@ -9,7 +9,7 @@ public class Queue{
 
     @Id
     private String Id;
-    private ArrayList<Customer> customerList;
+    private ArrayList<User> userList;
     private String primary;
     private String enabled;
     private String estimatedTime;
