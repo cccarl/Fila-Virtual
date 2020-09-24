@@ -12,7 +12,8 @@
                             Fruna<br>
                             Calle falsa 123<br>
                             Tienda de confites<br>
-                            +569 12345678
+                            +569 12345678<br>
+                            <img class="imgTienda" src="../assets/tienda1.jpg" width="300" height="200" /> 
                         </p>
                     </div>
                 </div>
@@ -55,6 +56,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
     import Header from "@/components/Header.vue";
     export default {
         name: "Register",
@@ -69,6 +71,8 @@
             }
         }),
         methods: {
+            ...mapMutations(["ingresarFila","createUser"]),
+
             showPopUp() {
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'visible';
@@ -77,14 +81,14 @@
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'hidden';
             },
-            checkLogin() {
-                console.log("Aqui deberia comprobarse")
-                console.log(this.user)
+            loginQueue() {
+                this.createUser(this.user);
+                this.ingresarFila();
             },
             ingresarVue(){
                 var btn = document.getElementById("prueba");
                 btn.style.visibility = 'hidden';
-                this.checkLogin()
+                this.loginQueue()
                 alert('Se ha ingresado a la fila correctamente, le llegara la confirmación a su celular');
             }
         }
@@ -216,6 +220,9 @@
         border-radius: 5px;
         width: 70%;
         padding: 15px;
+        margin: 20px;
+    }
+    .imgTienda{
         margin: 20px;
     }
 </style>

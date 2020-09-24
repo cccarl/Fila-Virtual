@@ -4,18 +4,18 @@
       <h1>Fila del local</h1>
     </div>
 
-    <button class="btnVerLocal btnViewQueue">Avanzar fila</button>
+    <button v-on:click="avanzar" class="btnVerLocal btnViewQueue">Avanzar fila</button>
 
     <table style="width:100%">
       <tr>
-        <th style="background-color: #ccc;">#</th>
         <th style="background-color: #ccc;">Nombre</th>
+        <th style="background-color: #ccc;">Apellido</th>
         <th style="background-color: #ccc;">Celular</th>
       </tr>
 
-      <tr v-for="user in users" :key="user.id">
+      <tr v-for="user in users.userList" :key="user.id">
         <td>{{ user.names }}</td>
-        <td>{{ user.names }}</td>
+        <td>{{ user.surnames }}</td>
         <td>{{ user.phoneNum }}</td>
       </tr>
     </table>
@@ -40,11 +40,14 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["getAllUsers"]),
+    ...mapMutations(["getAllUsers", "avanzarFila"]),
 
     get_users() {
       this.getAllUsers();
     },
+    avanzar() {
+      this.avanzarFila();
+    }
   },
 };
 </script>
