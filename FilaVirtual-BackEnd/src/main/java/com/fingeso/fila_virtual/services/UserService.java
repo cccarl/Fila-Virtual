@@ -24,7 +24,7 @@ public class UserService {
         return this.userRepo.findAll();
     }
 
-    // DESCUBRIR COMO HACER QUE FUNCIONE ESTO
+    // TODO: find out how to make this work
     @RequestMapping(value = "/findbyid/:id", method = RequestMethod.GET)
     @ResponseBody // this will make the controller respond with a JSON format
     public User getUserById(@PathVariable(value = "id") String Id) {
@@ -37,7 +37,6 @@ public class UserService {
         return this.userRepo.findUserByNames(names);
     }
 
-    // version real
     @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
     public ModelAndView createUser(@RequestBody User newUser){
         userRepo.save(newUser);
@@ -53,31 +52,4 @@ public class UserService {
         return new ModelAndView("redirect:/owner/registerowner", model);
     }
 
-    // version chanta
-    @RequestMapping(value = "/registeruser2", method = RequestMethod.GET)
-    public ModelAndView createUser(@RequestParam(defaultValue = "defaultNames") String names
-                            , @RequestParam(defaultValue = "defaultSurnames") String surnames
-                            , @RequestParam(defaultValue = "11.111.111-1") String rut
-                            , @RequestParam(defaultValue = "example@ex.com") String email
-                            , @RequestParam(defaultValue = "safepass") String password
-                            , @RequestParam(defaultValue = "+56912345678") String phoneNum
-                            , @RequestParam(defaultValue = "user") String role){
-
-        ModelMap model = new ModelMap();
-        model.addAttribute("names", names);
-
-        User newUser = new User(rut, names, surnames, email, password, phoneNum, role);
-        try{
-            this.userRepo.save(newUser);
-        }
-        catch (Exception e){
-            System.out.println("ERROR: COULDN'T CREATE USER");
-            return null;
-        }
-
-        return new ModelAndView("redirect:/owner/registerowner2", model);
-
-    }
-
 }
-

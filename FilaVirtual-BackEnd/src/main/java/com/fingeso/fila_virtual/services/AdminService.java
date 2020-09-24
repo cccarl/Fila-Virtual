@@ -1,7 +1,6 @@
 package com.fingeso.fila_virtual.services;
 
 import com.fingeso.fila_virtual.models.Admin;
-import com.fingeso.fila_virtual.models.Owner;
 import com.fingeso.fila_virtual.repositories.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;

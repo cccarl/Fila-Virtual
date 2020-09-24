@@ -6,9 +6,13 @@ import com.fingeso.fila_virtual.models.User;
 import com.fingeso.fila_virtual.repositories.QueueRepo;
 import com.fingeso.fila_virtual.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ExecutableRemoveOperation;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.mongodb.core.MongoOperations;
 
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,19 +58,29 @@ public class QueueService {
         try{
             List<User> users = this.userRepo.findAll(); //se obtiene todos los usuarios
             User nuevo = users.get(users.size()-1);
-            Queue queue = this.queueRepo.findQueueByPrimary("1");
-            ArrayList<User> aux = queue.getUserList();
+            Queue queue = new Queue("1", "true", "5");
+            ArrayList<User> aux = new ArrayList<>();
+            try{
+                aux = this.queueRepo.findQueueByPrimary("1").getUserList();
+            }
+            catch (Exception e ){
+                this.queueRepo.save(new Queue("1", "true", "5"));
+                System.out.println("ERROR IN: this.queueRepo.findQueueByPrimary(\"1\")");
+            }
+
             aux.add(nuevo);
             queue.setUserList(aux);
+            this.queueRepo.deleteByPrimary("1");
             this.queueRepo.save(queue);
             return queue;
         }
         catch (Exception e ){
-            return null;
+            return new Queue("1", "error", "error");
         }
     }
     @RequestMapping(value = "/removeUserInQueue", method = RequestMethod.GET)
     @ResponseBody
+
     public Queue removeUserInQueue(){
         try{
             List<User> users = this.userRepo.findAll(); //se obtiene todos los usuarios
