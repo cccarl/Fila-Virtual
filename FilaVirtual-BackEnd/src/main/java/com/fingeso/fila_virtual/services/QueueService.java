@@ -8,6 +8,7 @@ import com.fingeso.fila_virtual.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,28 @@ public class QueueService {
     @ResponseBody // this will make the controller respond with a JSON format
     public Queue getQueue(@PathVariable(value="primary")  String primary) { return this.queueRepo.findQueueByPrimary(primary);}
 
+    // version chanta
+    @RequestMapping(value = "/createQueue", method = RequestMethod.GET)
+    public void createQueue(
+            @RequestParam(defaultValue = "1") String primary
+            , @RequestParam(defaultValue = "true") String enabled
+            , @RequestParam(defaultValue = "5") String estimatedTime
+    ){
+
+
+
+        Queue newQueue = new Queue(primary,enabled,estimatedTime);
+        try{
+            this.queueRepo.save(newQueue);
+        }
+        catch (Exception e){
+            System.out.println("ERROR: COULDN'T CREATE USER");
+        }
+
+
+
+    }
+
     @RequestMapping(value = "/registerUserInQueue", method = RequestMethod.GET)
     @ResponseBody
     public Queue registerUserInQueue(){
@@ -34,8 +57,8 @@ public class QueueService {
             Queue queue = this.queueRepo.findQueueByPrimary("1");
             ArrayList<User> aux = queue.getUserList();
             aux.add(nuevo);
-            this.queueRepo.save(queue);
             queue.setUserList(aux);
+            this.queueRepo.save(queue);
             return queue;
         }
         catch (Exception e ){
