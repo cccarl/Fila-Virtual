@@ -1,6 +1,7 @@
 package com.fingeso.fila_virtual.services;
 
 import com.fingeso.fila_virtual.models.Owner;
+import com.fingeso.fila_virtual.models.User;
 import com.fingeso.fila_virtual.repositories.OwnerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ public class OwnerService {
     @Autowired // configuration to bring queries from UserRepo without some manual configurations
     private OwnerRepo ownerRepo;
 
+
     @RequestMapping(value = "/registerowner", method = RequestMethod.GET)
     public ModelAndView createOwner(@RequestParam(defaultValue = "defaultNames") String names
             , @RequestParam(defaultValue = "defaultSurnames") String surnames
@@ -25,8 +27,16 @@ public class OwnerService {
             , @RequestParam(defaultValue = "user") String role) {
 
         ModelMap model = new ModelMap();
-
         Owner newOwner = new Owner(rut, names, surnames, email, password, phoneNum, role);
+
+        model.addAttribute("names", newOwner.getNames());
+        model.addAttribute("surnames", newOwner.getSurnames());
+        model.addAttribute("rut", newOwner.getRut());
+        model.addAttribute("email", newOwner.getEmail());
+        model.addAttribute("password", newOwner.getPassword());
+        model.addAttribute("phoneNum", newOwner.getPhoneNum());
+        model.addAttribute("role", newOwner.getRole());
+
         try {
             this.ownerRepo.save(newOwner);
         } catch (Exception e) {

@@ -24,13 +24,37 @@ public class UserService {
         return this.userRepo.findAll();
     }
 
+    // DESCUBRIR COMO HACER QUE FUNCIONE ESTO
+    @RequestMapping(value = "/findbyid/:id", method = RequestMethod.GET)
+    @ResponseBody // this will make the controller respond with a JSON format
+    public User getUserById(@PathVariable(value = "id") String Id) {
+        return this.userRepo.findUserById(Id);
+    }
+
     @RequestMapping(value = "/getbyname/{names}", method = RequestMethod.GET)
     @ResponseBody
     public User getUserByName(@PathVariable(value = "names") String names) {
         return this.userRepo.findUserByNames(names);
     }
 
-    @RequestMapping(value = "/registeruser", method = RequestMethod.GET)
+    // version real
+    @RequestMapping(value = "/registeruser", method = RequestMethod.POST)
+    public ModelAndView createUser(@RequestBody User newUser){
+        userRepo.save(newUser);
+        ModelMap model = new ModelMap();
+
+        model.addAttribute("names", newUser.getNames());
+        model.addAttribute("surnames", newUser.getSurnames());
+        model.addAttribute("rut", newUser.getRut());
+        model.addAttribute("email", newUser.getEmail());
+        model.addAttribute("password", newUser.getPassword());
+        model.addAttribute("phoneNum", newUser.getPhoneNum());
+        model.addAttribute("role", newUser.getRole());
+        return new ModelAndView("redirect:/owner/registerowner", model);
+    }
+
+    // version chanta
+    @RequestMapping(value = "/registeruser2", method = RequestMethod.GET)
     public ModelAndView createUser(@RequestParam(defaultValue = "defaultNames") String names
                             , @RequestParam(defaultValue = "defaultSurnames") String surnames
                             , @RequestParam(defaultValue = "11.111.111-1") String rut
@@ -51,7 +75,7 @@ public class UserService {
             return null;
         }
 
-        return new ModelAndView("redirect:/owner/registerowner", model);
+        return new ModelAndView("redirect:/owner/registerowner2", model);
 
     }
 

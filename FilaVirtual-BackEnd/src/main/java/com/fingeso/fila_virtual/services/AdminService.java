@@ -1,6 +1,7 @@
 package com.fingeso.fila_virtual.services;
 
 import com.fingeso.fila_virtual.models.Admin;
+import com.fingeso.fila_virtual.models.Owner;
 import com.fingeso.fila_virtual.repositories.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ public class AdminService {
 
     @Autowired // configuration to bring queries from UserRepo without some manual configurations
     private AdminRepo adminRepo;
+
 
     @RequestMapping(value = "/registeradmin", method = RequestMethod.GET)
     public ModelAndView createOwner(@RequestParam(defaultValue = "defaultNames") String names
