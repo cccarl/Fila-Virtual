@@ -18,7 +18,7 @@ public class Queue{
         this.primary = primary;
         this.enabled=enabled;
         this.estimatedTime = estimatedTime;
-        this.customerList = new ArrayList<>();
+        this.userList = new ArrayList<>();
     }
 
     public String getPrimary() {
@@ -29,12 +29,12 @@ public class Queue{
         this.primary = primary;
     }
 
-    public ArrayList<Customer> getCustomerList() {
-        return customerList;
+    public ArrayList<User> getUserList() {
+        return userList;
     }
 
-    public void setCustomerList(ArrayList<Customer> customerList) {
-        this.customerList = customerList;
+    public void setUserList(ArrayList<User> userList) {
+        this.userList = userList;
     }
 
     public String getEstimatedTime() {
