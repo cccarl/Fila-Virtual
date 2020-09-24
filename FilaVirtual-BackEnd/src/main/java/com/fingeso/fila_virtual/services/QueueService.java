@@ -60,6 +60,7 @@ public class QueueService {
             User nuevo = users.get(users.size()-1);
             Queue queue = new Queue("1", "true", "5");
             ArrayList<User> aux = new ArrayList<>();
+            // a queue is attempted to be searched, if it fails, it's created
             try{
                 aux = this.queueRepo.findQueueByPrimary("1").getUserList();
             }
@@ -80,16 +81,25 @@ public class QueueService {
     }
     @RequestMapping(value = "/removeUserInQueue", method = RequestMethod.GET)
     @ResponseBody
-
     public Queue removeUserInQueue(){
         try{
-            List<User> users = this.userRepo.findAll(); //se obtiene todos los usuarios
-            User antiguo = users.get(0);
-            Queue queue = this.queueRepo.findQueueByPrimary("1");
-            ArrayList<User> aux = queue.getUserList();
-            aux.remove(antiguo);
-            queue.setUserList(aux);
-            return queue;
+            Queue newQueue = new Queue("1", "true", "5");
+            try {
+                newQueue = this.queueRepo.findQueueByPrimary("1");
+            }
+            catch (Exception e){
+                this.queueRepo.save(new Queue("1", "true", "5"));
+                newQueue = this.queueRepo.findQueueByPrimary("1");
+            }
+
+            ArrayList<User> newUserList = newQueue.getUserList();
+            newUserList.remove(0);
+            newQueue.setUserList(newUserList);
+            Queue newBetterQueue = new Queue("1", "true", "5");
+            newBetterQueue.setUserList(newUserList);
+            this.queueRepo.deleteByPrimary("1");
+            this.queueRepo.save(newBetterQueue);
+            return newQueue;
         }
         catch (Exception e ){
             return null;
